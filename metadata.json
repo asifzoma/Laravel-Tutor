@@ -1,0 +1,7 @@
+{
+  "name": "Laravel Tutor AI",
+  "description": "An interactive AI-powered application designed to teach the fundamentals of the Laravel PHP framework. Get explanations, code examples, and test your knowledge with quizzes generated on the fly.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
