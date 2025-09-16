@@ -119,7 +119,8 @@ export const generateLessonContent = async (topic: string): Promise<Lesson> => {
     const prompt = `Generate a lesson for a beginner learning about "${topic}" in Laravel. The lesson should include a simple explanation, an interactive fill-in-the-blanks code example, a relevant interview question with a sample expert answer, and a quiz with 7 multiple-choice questions to test understanding.`;
     
     try {
-        const response = await retryWithExponentialBackoff(
+        // FIX: Explicitly specify the generic type for retryWithExponentialBackoff to ensure 'response' is correctly typed.
+        const response = await retryWithExponentialBackoff<GenerateContentResponse>(
             () => ai.models.generateContent({
                 model: "gemini-2.5-flash",
                 contents: prompt,
@@ -161,7 +162,8 @@ export const generatePlacementQuiz = async (): Promise<QuizQuestion[]> => {
     const prompt = `Generate a placement quiz to assess a developer's beginner-level knowledge of Laravel. Create exactly 10 multiple-choice questions covering a range of fundamental topics like Routing, Eloquent ORM, Blade Templates, Controllers, and Middleware. Ensure each question has 4 options and one correct answer.`;
 
     try {
-        const response = await retryWithExponentialBackoff(
+        // FIX: Explicitly specify the generic type for retryWithExponentialBackoff to ensure 'response' is correctly typed.
+        const response = await retryWithExponentialBackoff<GenerateContentResponse>(
             () => ai.models.generateContent({
                 model: "gemini-2.5-flash",
                 contents: prompt,
@@ -201,7 +203,8 @@ export const getAnswerFeedback = async (question: string, userAnswer: string): P
     Analyze their response for correctness, clarity, and completeness. Keep the feedback concise (2-4 sentences) and focus on reinforcing correct concepts and gently correcting any misunderstandings. Start with a positive note. Do not provide a sample answer, only feedback on their response. Use markdown for formatting.`;
 
     try {
-        const response = await retryWithExponentialBackoff(
+        // FIX: Explicitly specify the generic type for retryWithExponentialBackoff to ensure 'response' is correctly typed.
+        const response = await retryWithExponentialBackoff<GenerateContentResponse>(
             () => ai.models.generateContent({
                 model: "gemini-2.5-flash",
                 contents: prompt,
